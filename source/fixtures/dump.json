@@ -1,0 +1,74 @@
+[
+{
+    "model": "webapp.quote",
+    "pk": 1,
+    "fields": {
+        "text": "новая промодерированая цитата",
+        "author": "ZCS,",
+        "email": "avataraang@gmail.com",
+        "rating": 0,
+        "status": "moderated",
+        "create_date": "2022-04-04T07:23:04.139Z"
+    }
+},
+{
+    "model": "webapp.quote",
+    "pk": 2,
+    "fields": {
+        "text": "цитата № 222222222222",
+        "author": "avatar",
+        "email": "avataraang@gmail.com",
+        "rating": 1,
+        "status": "moderated",
+        "create_date": "2022-04-04T07:23:38.761Z"
+    }
+},
+{
+    "model": "webapp.quote",
+    "pk": 3,
+    "fields": {
+        "text": "цитата № 3 цитата № 3 цитата № 3",
+        "author": "dfskfnskdf",
+        "email": "djfnsdljnf@gmail.com",
+        "rating": 1,
+        "status": "moderated",
+        "create_date": "2022-04-04T11:45:04.479Z"
+    }
+},
+{
+    "model": "webapp.vote",
+    "pk": 1,
+    "fields": {
+        "session_key": "qy2vdjhshmcbhkx4yuv0wi03pfvd9ebk",
+        "quote": 2,
+        "rating": 1
+    }
+},
+{
+    "model": "webapp.vote",
+    "pk": 2,
+    "fields": {
+        "session_key": "qy2vdjhshmcbhkx4yuv0wi03pfvd9ebk",
+        "quote": 1,
+        "rating": -1
+    }
+},
+{
+    "model": "webapp.vote",
+    "pk": 3,
+    "fields": {
+        "session_key": "xiv6x9ajgklhoviz3fn06vh9t3uwebt5",
+        "quote": 1,
+        "rating": 1
+    }
+},
+{
+    "model": "webapp.vote",
+    "pk": 4,
+    "fields": {
+        "session_key": "xiv6x9ajgklhoviz3fn06vh9t3uwebt5",
+        "quote": 3,
+        "rating": 1
+    }
+}
+]
