@@ -68,9 +68,50 @@ async function AddQuote() {
 }
 
 
+async function UpdateQuote() {
+    const allQuotes = document.getElementById('get');
+    const form = document.getElementById('update_form');
+    const message = document.getElementById('message');
+    const Quote = document.getElementById('Quote');
+    Quote.style.display = 'none';
+    message.style.display = '';
+    form.style.display = 'none';
+    allQuotes.style.display = 'none';
+    const text = document.getElementById('text').value;
+    const author = document.getElementById('author').value;
+    const email = document.getElementById('email').value;
+
+    try {
+        let response = await makeRequest('http://localhost:8000/api/quote/', 'Put',
+            {"text": text, "status":status});
+        console.log(response);
+        message.innerHTML = '<h5 style="font-size:40px;">Цитата обновлена!</h5>';
+        message.style.background = '';
+    } catch (error) {
+        error = await error.response;
+        console.log(error)
+        console.log(error.status)
+        console.log(error.statusText)
+        message.innerHTML = `<h4 style="font-size:50px;"> ${error.status}<b> ${error.statusText}</b> </h4> `;
+    }
+}
+
+
 async function ViewForm() {
     const allQuotes = document.getElementById('get');
     const form = document.getElementById('post');
+    const message = document.getElementById('message');
+    const Quote = document.getElementById('Quote');
+    Quote.style.display = 'none';
+    message.style.display = 'none';
+    form.style.display = '';
+    allQuotes.style.display = 'none'
+    let response = await makeRequest('http://localhost:8000/api/quote/', 'GET');
+}
+
+async function UpdateViewForm() {
+    const allQuotes = document.getElementById('get');
+    const form = document.getElementById('update_form');
     const message = document.getElementById('message');
     const Quote = document.getElementById('Quote');
     Quote.style.display = 'none';
@@ -95,7 +136,7 @@ async function MainPage() {
     console.log(response.body)
     for (let i = 0; i < response.length; i++) {
         let div = document.createElement('div');
-        div.innerHTML = `<a onclick='onClick(preventDefault);' style="text-decoration: none;" href="http://localhost:8000/api/quote/${response[i]['id']}">Детальный просмотр</a> <br>
+        div.innerHTML = `<a onclick='onClick(event);' style="text-decoration: none;" href="http://localhost:8000/api/quote/${response[i]['id']}">Детальный просмотр</a> <br>
             ${response[i]['text']} <br>
             Автор - ${response[i]['author']}<br>
             Рейтинг: <b class="rating">${response[i]['rating']} </b>  | 
@@ -124,7 +165,7 @@ async function onClick(event) {
     let response = await makeRequest(url, 'GET');
     console.log(response);
     let div = document.createElement('div');
-    div.innerHTML = `<a onclick='onclick(event);' href="http://localhost:8000/api/quote/${response['id']}">Изменить</a>
+    div.innerHTML = `<a onclick='UpdateQuote(preventDefault);' href="http://localhost:8000/api/quote/${response['id']}">Изменить</a>
         <br>
         ${response['text']}<br>
         ${response['author']}<br>

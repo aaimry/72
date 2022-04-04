@@ -20,13 +20,14 @@ def get_token_view(request, *args, **kwargs):
 class QuoteViewSet(ModelViewSet):
 
     def get_queryset(self):
+        if self.request.method == 'GET' and \
+                not self.request.user.has_perm('webapp.quote_view'):
+            return Quote.get_moderated()
         return Quote.objects.all()
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
             return QuoteCreateSerializer
-        elif self.request.method == 'GET':
-            return QuoteSerializer
         elif self.request.method == 'PUT':
             return QuoteUpdateSerializer
         return QuoteSerializer
